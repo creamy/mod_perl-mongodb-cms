@@ -17,23 +17,15 @@ sub new {
 
 sub accountid {
         my ( $self,$accountid ) = @_;
-		if (defined ($self->{_accountid})) {
-			return $self->{_authenticated}
-		} else {
-			my $is_authenticated=undef;
-			my $db = eval { new DB(); } or die ($@);
-			my $conn = $db->connect();
-			my $sth = $conn->prepare("SELECT * FROM accounts WHERE status='Y' AND accountid='$accountid'");
-			$sth->execute();
-			my $numRows = $sth->rows;
-			if ($numRows>0) {
-				$self->{_authenticated} = 1;
-				$is_authenticated = 1;
-			} else {
-				$self->{_authenticated}=undef;
-			}
-			return $is_authenticated;
-		}		
+	if (defined ($self->{_accountid})) {
+		return $self->{_authenticated}
+	} else {
+		my $is_authenticated=undef;
+
+#todo fetch account info and see if authenticated
+
+		return $is_authenticated;
+	}		
 }
 
 1;
